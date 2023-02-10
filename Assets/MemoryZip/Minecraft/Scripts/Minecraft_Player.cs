@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Minecraft_Player : MonoBehaviour {
+public class Minecraft_Player : MonoBehaviour 
+{
+	public enum Tool { hand, wood, stone, iron, gold, diamond }
+
 	public float speed = 10f;
 	public float jumpForce = 500f;
 	public int damage;
+	public int damageCount;
 	public float range;
 	public SpriteRenderer Render;
 	private Rigidbody2D rb;
@@ -22,6 +26,11 @@ public class Minecraft_Player : MonoBehaviour {
 	public Vector3 hitTile;
 	public Vector3Int tilePos;
 
+	[Header("Inventory")]
+	public Tool handTool = Tool.hand;
+	
+	
+
 	void Start() {
 		tf = transform;
 		rb = GetComponent<Rigidbody2D>();
@@ -29,7 +38,6 @@ public class Minecraft_Player : MonoBehaviour {
 
 	void Update() {
 		Attack();
-		//Jump();
 	}
 
 	private void FixedUpdate() {
@@ -38,13 +46,7 @@ public class Minecraft_Player : MonoBehaviour {
 
 	private void Move() {
 		float horizontal = Input.GetAxis("Horizontal");
-
 		rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-	}
-	private void Jump() {
-		if (Input.GetButtonDown("Jump") && rb.velocity.y == 0) {
-			rb.AddForce(new Vector2(0, jumpForce));
-		}
 	}
 
 
@@ -61,13 +63,21 @@ public class Minecraft_Player : MonoBehaviour {
 		if (hitcol2d != null) {
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				hitTile = hit.point - hit.normal / 2;
-				tilePos = grid.WorldToCell(hitTile);
+				tilePos = grid.WorldToCell(hitTile); 
 				tilemap.SetTile(tilePos, null);
 			}
 		}
 	}
 
-	private void OnDrawGizmos() {
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == 7)
+        {
+
+        }
+    }
+
+    private void OnDrawGizmos() {
 		Gizmos.color = Color.red;
 		Gizmos.DrawSphere(hit.point, 0.1f);
 	}
