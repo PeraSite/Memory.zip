@@ -10,6 +10,7 @@ public class CrazyArcade_Player : MonoBehaviour
     public float speed = 10.0f;
     [SerializeField] private int Hp = 3;
 
+    public Animator anim;
     public SpriteRenderer CharRender;
     public float nodamTime;
     public bool isnodamTime;
@@ -40,6 +41,15 @@ public class CrazyArcade_Player : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         transform.position += new Vector3(horizontal, vertical, 0).normalized * speed * Time.deltaTime;
+
+        if(horizontal + vertical != 0)
+        {
+            anim.SetBool("Walk", true);
+        }
+        else
+        {
+            anim.SetBool("Walk", false);
+        }
     }
 
     private void Attack()

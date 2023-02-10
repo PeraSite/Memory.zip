@@ -7,6 +7,7 @@ public class WaterBall : MonoBehaviour
     public float range;
     public LayerMask hitLayers;
     public GameObject water;
+    public GameObject ball;
 
 
     private void Start()
@@ -55,6 +56,7 @@ public class WaterBall : MonoBehaviour
     IEnumerator BoomDelay()
     {
         yield return new WaitForSeconds(1.5f);
+        ball.SetActive(false);
         water.SetActive(true);
         ShootRay(Vector2.right);
         ShootRay(Vector2.left);
