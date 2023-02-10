@@ -21,6 +21,10 @@ namespace MemoryZip.FlirtingGame {
 		[SerializeField] private TextMeshProUGUI _completePercentText;
 		[SerializeField] private Image _completePercentBar;
 
+		[Header("주인공 애니메이션")]
+		[SerializeField] private Animator _playerAnimator;
+		[SerializeField] private GameObject _playerAttackAnimation;
+
 		[Header("고양이 오브젝트")]
 		[SerializeField] private GameObject[] _maleCats;
 		[SerializeField] private GameObject[] _rivalCats;
@@ -49,6 +53,7 @@ namespace MemoryZip.FlirtingGame {
 			}
 		}
 		private float _timer;
+		private static readonly int IsAttack = Animator.StringToHash("IsAttack");
 
 		private void Start() {
 			CompletePercent = _defaultPercent;
@@ -57,14 +62,11 @@ namespace MemoryZip.FlirtingGame {
 		}
 
 		private void Update() {
-			HandleInput();
+			HandleAttackInput();
 			HandlePercentDecrease();
 		}
-		private void HandlePercentDecrease() {
-			CompletePercent = Mathf.Max(CompletePercent - _rivalCatDictionary[CurrentRound].Count * _percentPerRival * Time.deltaTime, 0);
-		}
 
-		private void HandleInput() {
+		private void HandleAttackInput() {
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				// TODO: 공격 레이저 표시
 				CompletePercent += _percentPerSpace;
@@ -72,6 +74,14 @@ namespace MemoryZip.FlirtingGame {
 					NextRound();
 				}
 			}
+
+			var isAttacking = Input.GetKey(KeyCode.Space);
+			_playerAnimator.SetBool(IsAttack, isAttacking);
+			_playerAttackAnimation.SetActive(isAttacking);
+		}
+
+		private void HandlePercentDecrease() {
+			CompletePercent = Mathf.Max(CompletePercent - _rivalCatDictionary[CurrentRound].Count * _percentPerRival * Time.deltaTime, 0);
 		}
 
 		[Title("유틸")]
