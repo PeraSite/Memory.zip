@@ -7,6 +7,7 @@ public class Minecraft_Player : MonoBehaviour
 
 	public float speed = 10f;
 	public float jumpForce = 500f;
+	public int hp;
 	public int damage;
 	public int damageCount;
 	public float range;
@@ -32,12 +33,18 @@ public class Minecraft_Player : MonoBehaviour
 	
 
 	void Start() {
+		hp = 3;
 		tf = transform;
 		rb = GetComponent<Rigidbody2D>();
 	}
 
 	void Update() {
 		Attack();
+
+        if (hp <= 0)
+        {
+			GameManager.Instance.Failure();
+        }
 	}
 
 	private void FixedUpdate() {
@@ -48,6 +55,8 @@ public class Minecraft_Player : MonoBehaviour
 		float horizontal = Input.GetAxis("Horizontal");
 		rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 	}
+
+
 
 
 	private void Attack() {
@@ -73,7 +82,7 @@ public class Minecraft_Player : MonoBehaviour
     {
         if(collision.gameObject.layer == 7)
         {
-
+			hp--;
         }
     }
 
