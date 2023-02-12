@@ -54,12 +54,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(currentStage != 0)
+        
+        if (currentStage != 0)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
                 SetPause();
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                StartCoroutine(Success());
+            }
         }
-        
     }
     public void StartButton() //메인화면 시작 버튼
     {
@@ -113,6 +117,7 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+        Debug.Log(SceneManager.GetActiveScene().name);
         currentStage++;
     }
 
@@ -161,25 +166,20 @@ public class GameManager : MonoBehaviour
         currentStage = 0;
     }
 
-    public void Success() //스테이지 클리어 성공
+    public IEnumerator Success() //스테이지 클리어 성공
     {
         SuccessImage.SetActive(true);
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SuccessImage.SetActive(false);
-            GoToNextStage(currentStage);
-        }
-            
+        yield return new WaitForSeconds(2f);
+        SuccessImage.SetActive(false);
+        GoToNextStage(currentStage);
     }
 
-    public void Failure() //스테이지 클리어 실패
+    public IEnumerator Failure() //스테이지 클리어 실패
     {
         FailureImage.SetActive(true);
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            FailureImage.SetActive(false);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-            
+        yield return new WaitForSeconds(2f);
+        FailureImage.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
 }

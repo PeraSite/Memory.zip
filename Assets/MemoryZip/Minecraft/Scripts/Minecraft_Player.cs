@@ -3,8 +3,6 @@ using UnityEngine.Tilemaps;
 
 public class Minecraft_Player : MonoBehaviour 
 {
-	public enum Tool { hand, wood, stone, iron, gold, diamond }
-
 	public float speed = 10f;
 	public float jumpForce = 500f;
 	public int hp;
@@ -26,9 +24,6 @@ public class Minecraft_Player : MonoBehaviour
 	public Tilemap tilemap;
 	public Vector3 hitTile;
 	public Vector3Int tilePos;
-
-	[Header("Inventory")]
-	public Tool handTool = Tool.hand;
 	
 	
 
