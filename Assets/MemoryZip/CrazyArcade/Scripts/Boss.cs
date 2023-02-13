@@ -142,7 +142,6 @@ public class Boss : MonoBehaviour
 
     IEnumerator Delay()
     {
-        Debug.Log("Delay");
         yield return new WaitForSeconds(1f);
         rb.velocity = Vector2.zero;
         isMove = false;

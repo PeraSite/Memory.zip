@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
     public GameObject pause;
     public GameObject SuccessImage;
     public GameObject FailureImage;
-    public GameObject EndImage;
 
     [Header("Stage")]
     public bool Ending;
@@ -70,14 +69,12 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(Failure());
             }
         }
-        else
+
+        if (Ending)
         {
-            if (Ending)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    Application.Quit();
-                }
+                Debug.Log("Game End");
             }
         }
     }
@@ -91,12 +88,12 @@ public class GameManager : MonoBehaviour
     {
         int OrderOfStage = Random.Range(1, 6);
         Debug.Log(OrderOfStage);
-        for (int i = 0; i < 5;)
+        for (int i = 1; i < 6;)
         {
             if (StageNum.Contains(OrderOfStage))
             {
                 Debug.Log("Stage Num already has " + OrderOfStage);
-                OrderOfStage = Random.Range(1, 7);
+                OrderOfStage = Random.Range(1, 6);
             }
             else
             {
@@ -106,6 +103,7 @@ public class GameManager : MonoBehaviour
             }
         }
         Debug.Log("Stage Set Done");
+        Debug.Log("스테이지 순서" + StageNum[0] + " " + StageNum[1] + " " + StageNum[2] + " " + StageNum[3] + " " + StageNum[4] + " ");
     }
 
     public void GoToNextStage(int nextStageNum)
@@ -128,9 +126,6 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("RamyeonGame");
                 break;
             default:
-                SceneManager.LoadScene("MainMenu");
-                EndImage.SetActive(true);
-                Ending = true;
                 break;
         }
         Debug.Log(SceneManager.GetActiveScene().name);
@@ -182,17 +177,27 @@ public class GameManager : MonoBehaviour
         currentStage = 0;
     }
 
-    public void End()
+    public void GotoEnd()
     {
-
+        SceneManager.LoadScene("Ending");
+        Ending = true;
     }
 
     public IEnumerator Success() //스테이지 클리어 성공
     {
         SuccessImage.SetActive(true);
         yield return new WaitForSeconds(1f);
-        SuccessImage.SetActive(false);
-        GoToNextStage(currentStage);
+        SuccessImage.SetActive(false); 
+        if (currentStage < 5)
+        {
+            GoToNextStage(StageNum[currentStage]);
+        }
+        else
+        {
+            GotoEnd();
+        }
+        
+        
     }
 
     public IEnumerator Failure() //스테이지 클리어 실패

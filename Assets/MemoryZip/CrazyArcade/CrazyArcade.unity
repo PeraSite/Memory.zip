@@ -713,9 +713,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 811639646}
-  - component: {fileID: 811639645}
   - component: {fileID: 811639647}
   - component: {fileID: 811639648}
+  - component: {fileID: 811639649}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -723,22 +723,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!70 &811639645
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811639643}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
-  m_Size: {x: 1, y: 1}
-  m_Direction: 0
 --- !u!4 &811639646
 Transform:
   m_ObjectHideFlags: 0
@@ -796,6 +780,22 @@ MonoBehaviour:
   nodamTime: 1.5
   isnodamTime: 0
   AttackDelay: 0
+--- !u!58 &811639649
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811639643}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.5}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &896818884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,7 +1394,7 @@ GameObject:
   - component: {fileID: 1739291230}
   - component: {fileID: 1739291229}
   - component: {fileID: 1739291228}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

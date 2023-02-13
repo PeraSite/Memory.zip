@@ -62,7 +62,6 @@ public class Player : MonoBehaviour
 	private void Jump()
 	{
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(jumpCheck.position, jumpCheckradius, 8);
-		Debug.Log(colliders.Length);
 		if (colliders.Length > 0)
         {
 			isJump = false;

@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/MemoryZip/RamyeonGame/RamyeonGame.unity
     guid: 5dc13fdf01928be4899aad7632ee33de
   - enabled: 1
-    path: Assets/MemoryZip/TalesRunner/TalesRunner.unity
-    guid: cd27c94b492f65941aacb74b8486972f
+    path: Assets/MemoryZip/Common/Scenes/Ending.unity
+    guid: b79a668a4528d3e4bb388d57269c8130
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
