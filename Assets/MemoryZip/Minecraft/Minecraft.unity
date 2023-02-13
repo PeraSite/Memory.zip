@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 106101799}
   - component: {fileID: 106101798}
   - component: {fileID: 106101800}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Block
   m_TagString: Stone
   m_Icon: {fileID: 0}
@@ -13351,7 +13351,7 @@ MonoBehaviour:
   rayLength: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   grid: {fileID: 1860131515}
   tilemap: {fileID: 106101799}
   hitTile: {x: 0, y: 0, z: 0}

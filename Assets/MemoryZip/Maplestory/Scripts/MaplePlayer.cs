@@ -6,6 +6,7 @@ public class MaplePlayer : MonoBehaviour
 {
 	public float speed = 10f;
 	public float jumpForce = 500f;
+	public float knockBackForce;
 	public int hp;
 	public Animator anim;
 	public SpriteRenderer sr;
@@ -93,10 +94,14 @@ public class MaplePlayer : MonoBehaviour
 		if(collision.gameObject.tag == "Monster")
         {
 			Debug.Log("monster attack");
-			rb.AddForce(new Vector2(horizontal * -3 * jumpForce, jumpForce));
-
+			//StartCoroutine(GameManager.Instance.Failure());
 		}
-    }
+		if (collision.gameObject.tag == "Goal")
+		{
+			Debug.Log("Success");
+			//StartCoroutine(GameManager.Instance.Success());
+		}
+	}
     private void OnCollisionExit2D(Collision2D collision)
     {
 		if (collision.gameObject.layer == 8)

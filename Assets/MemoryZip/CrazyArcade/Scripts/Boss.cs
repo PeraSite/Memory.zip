@@ -27,7 +27,7 @@ public class Boss : MonoBehaviour
         BossRender = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(Delay());
-        B_Hp = 10;
+        B_Hp = 5;
     }
 
     void Update()
