@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class MaplePlayer : MonoBehaviour
 {
 	public float speed = 10f;
 	public float jumpForce = 500f;
 	public int hp;
-	public float jumpCheckradius;
-	public Transform jumpCheck;
+	public Animator anim;
 	public SpriteRenderer sr;
 	private Rigidbody2D rb;
-
+	public float horizontal;
 	public bool isMove;
 	public bool isJump;
 
 	void Start()
 	{
 		hp = 3;
+		anim = GetComponent<Animator>();
 		sr = GetComponent<SpriteRenderer>();
 		rb = GetComponent<Rigidbody2D>();
 	}
@@ -29,6 +29,24 @@ public class Player : MonoBehaviour
 		{
 			GameManager.Instance.Failure();
 		}
+
+        if (isJump)
+        {
+			anim.SetBool("isJump", true);
+        }
+        else
+        {
+			anim.SetBool("isJump", false);
+		}
+		if (isMove)
+		{
+			anim.SetBool("isMove", true);
+		}
+		else
+		{
+			anim.SetBool("isMove", false);
+		}
+
 	}
 
 	private void FixedUpdate()
@@ -38,7 +56,7 @@ public class Player : MonoBehaviour
 
 	private void Move()
 	{
-		float horizontal = Input.GetAxis("Horizontal");
+		horizontal = Input.GetAxis("Horizontal");
 		if(horizontal != 0)
         {
 			isMove = true;
@@ -61,26 +79,27 @@ public class Player : MonoBehaviour
 
 	private void Jump()
 	{
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(jumpCheck.position, jumpCheckradius, 8);
-		if (colliders.Length > 0)
-        {
-			isJump = false;
-		}
-        else
-        {
-			isJump = true;
-		}
-			
-
 		if (Input.GetButtonDown("Jump") && !isJump)
 		{
 
 			rb.AddForce(new Vector2(0, jumpForce));
 		}
 	}
-
-    private void OnDrawGizmos()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-		Gizmos.DrawSphere(jumpCheck.position, jumpCheckradius);
+		if(collision.gameObject.layer == 8)
+			isJump = false;
+
+		if(collision.gameObject.tag == "Monster")
+        {
+			Debug.Log("monster attack");
+			rb.AddForce(new Vector2(horizontal * -3 * jumpForce, jumpForce));
+
+		}
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+		if (collision.gameObject.layer == 8)
+			isJump = true;
+	}
 }
