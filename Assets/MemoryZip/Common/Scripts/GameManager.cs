@@ -32,8 +32,10 @@ public class GameManager : MonoBehaviour
     public GameObject pause;
     public GameObject SuccessImage;
     public GameObject FailureImage;
+    public GameObject EndImage;
 
     [Header("Stage")]
+    public bool Ending;
     int currentStage;
     List<int> StageNum = new List<int>();
 
@@ -63,6 +65,20 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(Success());
             }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                StartCoroutine(Failure());
+            }
+        }
+        else
+        {
+            if (Ending)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Application.Quit();
+                }
+            }
         }
     }
     public void StartButton() //메인화면 시작 버튼
@@ -73,7 +89,7 @@ public class GameManager : MonoBehaviour
 
     public void RandomStageSelect()
     {
-        int OrderOfStage = Random.Range(1, 7);
+        int OrderOfStage = Random.Range(1, 6);
         Debug.Log(OrderOfStage);
         for (int i = 0; i < 5;)
         {
@@ -111,10 +127,10 @@ public class GameManager : MonoBehaviour
             case (5):
                 SceneManager.LoadScene("RamyeonGame");
                 break;
-            case (6):
-                SceneManager.LoadScene("TalesRunner");
-                break;
             default:
+                SceneManager.LoadScene("MainMenu");
+                EndImage.SetActive(true);
+                Ending = true;
                 break;
         }
         Debug.Log(SceneManager.GetActiveScene().name);
@@ -166,10 +182,15 @@ public class GameManager : MonoBehaviour
         currentStage = 0;
     }
 
+    public void End()
+    {
+
+    }
+
     public IEnumerator Success() //스테이지 클리어 성공
     {
         SuccessImage.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         SuccessImage.SetActive(false);
         GoToNextStage(currentStage);
     }
@@ -177,7 +198,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator Failure() //스테이지 클리어 실패
     {
         FailureImage.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         FailureImage.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 

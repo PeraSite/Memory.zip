@@ -67,10 +67,11 @@ public class CrazyArcade_Player : MonoBehaviour
         if (Hp != 0)
         {
             Hp -= 1;
-        }
-        else
-        {
-            gameObject.SetActive(false);
+            if(Hp == 0)
+            {
+                StartCoroutine(GameManager.Instance.Failure());
+                gameObject.SetActive(false);
+            }
         }
     }
     private void OnCollisionStay2D(Collision2D collision)

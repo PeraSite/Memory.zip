@@ -28,27 +28,32 @@ public class WaterBall : MonoBehaviour
 
     public void ShootRay(Vector2 direction)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, range, hitLayers);
-        
-        if (hit.collider != null)
+        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, direction, range, hitLayers);
+
+        if (hit.Length != 0)
         {
-            Debug.Log("Hit " + hit.collider.gameObject.name);
-            if(hit.collider.gameObject.tag == "Boss")
+            foreach (RaycastHit2D hits in hit)
             {
-                Boss hitEnemy = hit.transform.GetComponent<Boss>();
-                if (hitEnemy != null && !hitEnemy.isnodamTime)
+                Debug.Log("Hit " + hits.collider.gameObject.name);
+
+                if (hits.collider.gameObject.tag == "Boss")
                 {
-                    hitEnemy.TakeDamage();
+                    Boss hitEnemy = hits.transform.GetComponent<Boss>();
+                    if (hitEnemy != null && !hitEnemy.isnodamTime)
+                    {
+                        hitEnemy.TakeDamage();
+                    }
+                }
+                if (hits.collider.gameObject.tag == "Monster")
+                {
+                    Monster hitEnemy = hits.transform.GetComponent<Monster>();
+                    if (hitEnemy != null)
+                    {
+                        hitEnemy.TakeDamage();
+                    }
                 }
             }
-            if (hit.collider.gameObject.tag == "Monster")
-            {
-                Monster hitEnemy = hit.transform.GetComponent<Monster>();
-                if (hitEnemy != null)
-                {
-                    hitEnemy.TakeDamage();
-                }
-            }
+            
 
         }
     }

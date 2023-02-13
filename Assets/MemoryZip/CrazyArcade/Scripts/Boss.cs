@@ -10,12 +10,20 @@ public class Boss : MonoBehaviour
 
     public float nodamTime = 1.5f;
     public SpriteRenderer BossRender;
+    [Header("anim")]
+    public Animator anim;
+    public bool isMove;
+    public bool isBack;
+    public bool isRight;
+    public bool isLeft;
+
     public bool isnodamTime;
 
     private Rigidbody2D rb;
 
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         BossRender = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(Delay());
@@ -25,6 +33,39 @@ public class Boss : MonoBehaviour
     void Update()
     {
         DeathCheck();
+        if (isMove)
+        {
+            anim.SetBool("isMove", true);
+        }
+        else
+        {
+            anim.SetBool("isMove", false);
+        }
+        if (isRight)
+        {
+            anim.SetBool("isRight", true);
+        }
+        else
+        {
+            anim.SetBool("isRight", false);
+        }
+        if (isLeft)
+        {
+            anim.SetBool("isLeft", true);
+        }
+        else
+        {
+            anim.SetBool("isLeft", false);
+        }
+        if (isBack)
+        {
+            anim.SetBool("isBack", true);
+        }
+        else
+        {
+            anim.SetBool("isBack", false);
+        }
+
     }
 
     private void DeathCheck()
@@ -46,6 +87,11 @@ public class Boss : MonoBehaviour
             rb.velocity = Vector3.zero;
             B_Hp -= 1;
             Debug.Log(B_Hp);
+            if(B_Hp == 0)
+            {
+                anim.SetTrigger("Die");
+                GameManager.Instance.Success();
+            }
         }
     }
 
@@ -53,22 +99,42 @@ public class Boss : MonoBehaviour
     {
         if (moveDirection == 0)
         {
+            isMove = false;
+            isRight = false;
+            isLeft = false;
+            isBack = false;
             rb.velocity = Vector3.zero;
         }
         else if (moveDirection == 1)
         {
+            isMove = true;
+            isRight = false;
+            isLeft = false;
+            isBack = true;
             rb.velocity = new Vector2(0, moveSpeed);
         }
         else if (moveDirection == 2)
         {
+            isMove = true;
+            isRight = true;
+            isLeft = false;
+            isBack = false;
             rb.velocity = new Vector2(moveSpeed, 0);
         }
         else if (moveDirection == 3)
         {
+            isMove = true;
+            isRight = false;
+            isLeft = false;
+            isBack = false;
             rb.velocity = new Vector2(0, -moveSpeed);
         }
         else if (moveDirection == 4)
         {
+            isMove = true;
+            isRight = false;
+            isLeft = true;
+            isBack = false;
             rb.velocity = new Vector2(-moveSpeed, 0);
         }
         StartCoroutine(Delay());
@@ -76,7 +142,14 @@ public class Boss : MonoBehaviour
 
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(2f);
+        Debug.Log("Delay");
+        yield return new WaitForSeconds(1f);
+        rb.velocity = Vector2.zero;
+        isMove = false;
+        isRight = false;
+        isLeft = false;
+        isBack = false;
+        yield return new WaitForSeconds(1f);
         moveDirection = Random.Range(0, 4);
         Move();
     }

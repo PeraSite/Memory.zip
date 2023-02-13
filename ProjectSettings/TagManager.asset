@@ -9,6 +9,8 @@ TagManager:
   - Lava
   - Chast
   - Water
+  - Monster
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -16,10 +18,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Boss
+  - Monster
   - Floor
-  - 
+  - Player
   - 
   - 
   - 
