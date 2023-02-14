@@ -194,12 +194,15 @@ public class GameManager : MonoBehaviour
     public void Restart() //해당 스테이지 재시작
     {
         SetPause();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GotoMain() //메인으로
     {
         SetPause();
         SceneManager.LoadScene("MainMenu");
+        SoundPlayer.clip = MainSound;
+        SoundPlayer.Play();
         currentStage = 0;
     }
 
