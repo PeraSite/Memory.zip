@@ -72,8 +72,8 @@ public class Boss : MonoBehaviour
     {
         if (B_Hp <= 0)
         {
-            Debug.Log("Death");
-            gameObject.SetActive(false);
+            rb.velocity = Vector2.zero;
+            StartCoroutine(GameManager.Instance.Success());
         }
     }
 

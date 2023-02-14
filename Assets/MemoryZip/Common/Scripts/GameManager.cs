@@ -38,6 +38,11 @@ public class GameManager : MonoBehaviour
     int currentStage;
     List<int> StageNum = new List<int>();
 
+    [Header("Sound")]
+    public AudioSource SoundPlayer;
+    public AudioClip MainSound;
+    public AudioClip EndingSound;
+
     private void Awake()
     {
         if (instance == null)
@@ -52,6 +57,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        SoundPlayer = GetComponent<AudioSource>();
+        SoundPlayer.clip = MainSound;
+        SoundPlayer.Play();
+    }
 
     private void Update()
     {
@@ -180,6 +191,8 @@ public class GameManager : MonoBehaviour
     public void GotoEnd()
     {
         SceneManager.LoadScene("Ending");
+        SoundPlayer.clip = EndingSound;
+        SoundPlayer.Play();
         Ending = true;
     }
 

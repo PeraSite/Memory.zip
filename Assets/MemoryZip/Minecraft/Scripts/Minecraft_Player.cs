@@ -24,6 +24,11 @@ public class Minecraft_Player : MonoBehaviour
 	public Tilemap tilemap;
 	public Vector3 hitTile;
 	public Vector3Int tilePos;
+
+	[Header("Sound")]
+	public AudioClip waterSound;
+	public AudioClip lavaSound;
+	public AudioClip digSound;
 	
 	
 
@@ -73,13 +78,27 @@ public class Minecraft_Player : MonoBehaviour
 		}
 	}
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+		if (collision.gameObject.tag == "Lava")
+		{
+			Debug.Log("Lava");
+			StartCoroutine(GameManager.Instance.Failure());
+		}
+	}
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 7)
+        if(collision.gameObject.tag == "WaterSound")
         {
-			hp--;
+			
         }
-    }
+
+		if (collision.gameObject.tag == "LavaSound")
+		{
+
+		}
+	}
 
     private void OnDrawGizmos() {
 		Gizmos.color = Color.red;

@@ -94,12 +94,12 @@ public class MaplePlayer : MonoBehaviour
 		if(collision.gameObject.tag == "Monster")
         {
 			Debug.Log("monster attack");
-			//StartCoroutine(GameManager.Instance.Failure());
+			StartCoroutine(GameManager.Instance.Failure());
 		}
 		if (collision.gameObject.tag == "Goal")
 		{
 			Debug.Log("Success");
-			//StartCoroutine(GameManager.Instance.Success());
+			StartCoroutine(GameManager.Instance.Success());
 		}
 	}
     private void OnCollisionExit2D(Collision2D collision)

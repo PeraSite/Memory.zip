@@ -70,7 +70,6 @@ public class CrazyArcade_Player : MonoBehaviour
             if(Hp == 0)
             {
                 StartCoroutine(GameManager.Instance.Failure());
-                gameObject.SetActive(false);
             }
         }
     }

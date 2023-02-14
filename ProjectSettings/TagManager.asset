@@ -12,6 +12,8 @@ TagManager:
   - Monster
   - Boss
   - Ground
+  - WaterSound
+  - LavaSound
   layers:
   - Default
   - TransparentFX
