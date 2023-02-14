@@ -163,6 +163,11 @@ MonoBehaviour:
   SoundPlayer: {fileID: 0}
   MainSound: {fileID: 8300000, guid: aa464e094ffac4f41b34d7e61785ff47, type: 3}
   EndingSound: {fileID: 8300000, guid: ef89664355b60e444b430c5e0ad96d1b, type: 3}
+  MapleSound: {fileID: 8300000, guid: 795d4d2e870e77c4b932b52d90f272b7, type: 3}
+  CrazyArcadeSound: {fileID: 8300000, guid: 8422d11516b4b864bb087388b8c76702, type: 3}
+  MinecraftSound: {fileID: 8300000, guid: c1127547da22eb942963a383d57bcf4a, type: 3}
+  FlirtingGameSound: {fileID: 0}
+  RamyeonGameSound: {fileID: 0}
 --- !u!4 &66563126
 Transform:
   m_ObjectHideFlags: 0

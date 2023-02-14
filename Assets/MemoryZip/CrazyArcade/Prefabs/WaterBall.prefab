@@ -172,6 +172,9 @@ MonoBehaviour:
     m_Bits: 192
   water: {fileID: 4211259344600039940}
   ball: {fileID: 6191396403894519054}
+  SoundPlayer: {fileID: 0}
+  spawnSound: {fileID: 8300000, guid: b6819b210ddcd26409d19648a7811901, type: 3}
+  boomSound: {fileID: 8300000, guid: 6cd4f0ecfe8b19545ace3da3ea0c9319, type: 3}
 --- !u!1 &6191396403894519054
 GameObject:
   m_ObjectHideFlags: 0

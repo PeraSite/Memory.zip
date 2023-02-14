@@ -26,6 +26,8 @@ public class Minecraft_Player : MonoBehaviour
 	public Vector3Int tilePos;
 
 	[Header("Sound")]
+	public AudioSource AS1;
+	public AudioSource AS2;
 	public AudioClip waterSound;
 	public AudioClip lavaSound;
 	public AudioClip digSound;
@@ -71,6 +73,8 @@ public class Minecraft_Player : MonoBehaviour
 		Collider2D hitcol2d = Physics2D.OverlapCircle(hit.point, 0.1f, layerMask);
 		if (hitcol2d != null) {
 			if (Input.GetKeyDown(KeyCode.Space)) {
+				AS2.clip = digSound;
+				AS2.Play();
 				hitTile = hit.point - hit.normal / 2;
 				tilePos = grid.WorldToCell(hitTile); 
 				tilemap.SetTile(tilePos, null);
@@ -85,18 +89,51 @@ public class Minecraft_Player : MonoBehaviour
 			Debug.Log("Lava");
 			StartCoroutine(GameManager.Instance.Failure());
 		}
+
+		if(collision.gameObject.tag == "Goal")
+        {
+			Debug.Log("Success");
+			StartCoroutine(GameManager.Instance.Success());
+		}
+
+		if (collision.gameObject.tag == "WaterSound")
+		{
+			AS1.clip = waterSound;
+			AS1.Play();
+		}
+
+		if (collision.gameObject.tag == "LavaSound")
+		{
+			AS1.clip = lavaSound;
+			AS1.Play();
+		}
 	}
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "WaterSound")
-        {
-			
-        }
+		//if (collision.gameObject.tag == "WaterSound")
+		//{
+		//	AS1.clip = waterSound;
+		//	AS1.Play();
+		//}
+
+		//if (collision.gameObject.tag == "LavaSound")
+		//{
+		//	AS1.clip = lavaSound;
+		//	AS1.Play();
+		//}
+	}
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+		if (collision.gameObject.tag == "WaterSound")
+		{
+			AS1.Stop();
+		}
 
 		if (collision.gameObject.tag == "LavaSound")
 		{
-
+			AS1.Stop();
 		}
 	}
 

@@ -8,10 +8,14 @@ public class WaterBall : MonoBehaviour
     public LayerMask hitLayers;
     public GameObject water;
     public GameObject ball;
-
+    [Header("Sound")]
+    public AudioSource SoundPlayer;
+    public AudioClip spawnSound;
+    public AudioClip boomSound;
 
     private void Start()
     {
+        SoundPlayer = GameObject.Find("SoundPlayer").GetComponent<AudioSource>();
         Boom();
     }
     private void Update()
@@ -60,7 +64,12 @@ public class WaterBall : MonoBehaviour
 
     IEnumerator BoomDelay()
     {
-        yield return new WaitForSeconds(1.5f);
+        SoundPlayer.clip = spawnSound;
+        SoundPlayer.Play();
+        yield return new WaitForSeconds(1f);
+        SoundPlayer.clip = boomSound;
+        SoundPlayer.Play();
+        yield return new WaitForSeconds(0.7f);
         ball.SetActive(false);
         water.SetActive(true);
         ShootRay(Vector2.right);

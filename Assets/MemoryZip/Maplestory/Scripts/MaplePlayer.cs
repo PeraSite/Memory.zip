@@ -15,6 +15,10 @@ public class MaplePlayer : MonoBehaviour
 	public bool isMove;
 	public bool isJump;
 
+	[Header("Sound")]
+	public AudioSource AS;
+	public AudioClip JumpClip;
+
 	void Start()
 	{
 		hp = 3;
@@ -82,7 +86,8 @@ public class MaplePlayer : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Jump") && !isJump)
 		{
-
+			AS.clip = JumpClip;
+			AS.Play();
 			rb.AddForce(new Vector2(0, jumpForce));
 		}
 	}

@@ -42,6 +42,11 @@ public class GameManager : MonoBehaviour
     public AudioSource SoundPlayer;
     public AudioClip MainSound;
     public AudioClip EndingSound;
+    public AudioClip MapleSound;
+    public AudioClip CrazyArcadeSound;
+    public AudioClip MinecraftSound;
+    public AudioClip FlirtingGameSound;
+    public AudioClip RamyeonGameSound;
 
     private void Awake()
     {
@@ -123,18 +128,28 @@ public class GameManager : MonoBehaviour
         {
             case (1):
                 SceneManager.LoadScene("Minecraft");
+                SoundPlayer.clip = MinecraftSound;
+                SoundPlayer.Play();
                 break;
             case (2):
                 SceneManager.LoadScene("CrazyArcade");
+                SoundPlayer.clip = CrazyArcadeSound;
+                SoundPlayer.Play();
                 break;
             case (3):
                 SceneManager.LoadScene("Maplestory");
+                SoundPlayer.clip = MapleSound;
+                SoundPlayer.Play();
                 break;
             case (4):
                 SceneManager.LoadScene("FlirtingGame");
+                SoundPlayer.clip = FlirtingGameSound;
+                SoundPlayer.Play();
                 break;
             case (5):
                 SceneManager.LoadScene("RamyeonGame");
+                SoundPlayer.clip = RamyeonGameSound;
+                SoundPlayer.Play();
                 break;
             default:
                 break;

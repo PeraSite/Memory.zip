@@ -15,6 +15,7 @@ public class CrazyArcade_Player : MonoBehaviour
     public float nodamTime;
     public bool isnodamTime;
     public bool AttackDelay;
+    public bool isMove;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class CrazyArcade_Player : MonoBehaviour
     }
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         CharRender = GetComponentInChildren<SpriteRenderer>();
     }
 
