@@ -12,4 +12,17 @@ public class Button : MonoBehaviour
     {
         GameManager.Instance.KeyGuideButton();
     }
+    public void MinecraftRuleButton()
+    {
+        GameManager.Instance.RuleButton(GameManager.Instance.MinecraftRule);
+    }
+    public void CrazyArcadeRuleButton()
+    {
+        GameManager.Instance.RuleButton(GameManager.Instance.CrazyArcadeRule);
+
+    }
+    public void MapleStoryRuleButton()
+    {
+        GameManager.Instance.RuleButton(GameManager.Instance.MapleStoryRule);
+    }
 }
