@@ -158,7 +158,9 @@ MonoBehaviour:
   pause: {fileID: 1092828990}
   SuccessImage: {fileID: 772248371}
   FailureImage: {fileID: 1186376996}
-  MinecraftImage: {fileID: 1528846333}
+  MinecraftRule: {fileID: 1528846333}
+  CrazyArcadeRule: {fileID: 0}
+  MapleStoryRule: {fileID: 0}
   Ending: 0
   SoundPlayer: {fileID: 0}
   MainSound: {fileID: 8300000, guid: aa464e094ffac4f41b34d7e61785ff47, type: 3}
@@ -181,8 +183,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1710225919}
+  - {fileID: 697563436}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &66563128
 AudioSource:
@@ -507,7 +510,7 @@ RectTransform:
   m_Children:
   - {fileID: 971395294}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -732,7 +735,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1528846335}
         m_TargetAssemblyTypeName: Button, Assembly-CSharp
-        m_MethodName: OnClickCheck
+        m_MethodName: MinecraftRuleButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -845,7 +848,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 66563126}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &772248371
