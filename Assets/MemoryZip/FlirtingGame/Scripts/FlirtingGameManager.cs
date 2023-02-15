@@ -16,7 +16,6 @@ namespace MemoryZip.FlirtingGame {
 
 		[SerializeField] private float _percentPerRival = 1;
 		[SerializeField] private float _percentPerSpace = 5;
-		[SerializeField] private float _gameOverDelay = 5f;
 
 		[Header("UI")]
 		[SerializeField] private TextMeshProUGUI _currentRoundText;
