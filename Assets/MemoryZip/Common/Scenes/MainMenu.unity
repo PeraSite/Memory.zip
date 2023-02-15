@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 66563126}
   - component: {fileID: 66563125}
-  - component: {fileID: 66563127}
   - component: {fileID: 66563128}
   m_Layer: 0
   m_Name: GameManager
@@ -167,8 +166,8 @@ MonoBehaviour:
   MapleSound: {fileID: 8300000, guid: 795d4d2e870e77c4b932b52d90f272b7, type: 3}
   CrazyArcadeSound: {fileID: 8300000, guid: 8422d11516b4b864bb087388b8c76702, type: 3}
   MinecraftSound: {fileID: 8300000, guid: c1127547da22eb942963a383d57bcf4a, type: 3}
-  FlirtingGameSound: {fileID: 0}
-  RamyeonGameSound: {fileID: 0}
+  FlirtingGameSound: {fileID: 8300000, guid: 13ca2068c788b194ba2118e0b939ed6b, type: 3}
+  RamyeonGameSound: {fileID: 8300000, guid: d93e670ec04ebaf4394c8333f5122ba3, type: 3}
 --- !u!4 &66563126
 Transform:
   m_ObjectHideFlags: 0
@@ -182,18 +181,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1710225919}
-  - {fileID: 697563436}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &66563127
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66563124}
-  m_Enabled: 1
 --- !u!82 &66563128
 AudioSource:
   m_ObjectHideFlags: 0
@@ -517,7 +507,7 @@ RectTransform:
   m_Children:
   - {fileID: 971395294}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -855,7 +845,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 66563126}
+  m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &772248371
@@ -1591,6 +1581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1312426503}
   - component: {fileID: 1312426502}
+  - component: {fileID: 1312426504}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1656,6 +1647,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1312426504
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312426500}
+  m_Enabled: 1
 --- !u!1 &1455910696
 GameObject:
   m_ObjectHideFlags: 0

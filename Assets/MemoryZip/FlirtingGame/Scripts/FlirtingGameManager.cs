@@ -20,7 +20,6 @@ namespace MemoryZip.FlirtingGame {
 
 		[Header("UI")]
 		[SerializeField] private TextMeshProUGUI _currentRoundText;
-		[SerializeField] private TextMeshProUGUI _completePercentText;
 		[SerializeField] private Image _completePercentBar;
 		[SerializeField] private GameObject _gameOverObject;
 
@@ -41,6 +40,11 @@ namespace MemoryZip.FlirtingGame {
 
 		[Tooltip("현재 라운드 -> 보여질 암컷 고양이 오브젝트 목록")]
 		[OdinSerialize] private Dictionary<int, List<GameObject>> _rivalCatDictionary = new();
+
+		[Header("효과음")]
+		[SerializeField] private AudioSource _attackSound;
+		[SerializeField] private AudioClip _clearSound;
+
 
 		private bool _isGameOver;
 		private int _currentRound = 1;
@@ -80,7 +84,7 @@ namespace MemoryZip.FlirtingGame {
 
 		private void HandleAttackInput() {
 			if (Input.GetKeyDown(KeyCode.Space)) {
-				// TODO: 공격 레이저 표시
+				_attackSound.time = 0f;
 
 				// 함락 게이지 상승
 				CompletePercent += _percentPerSpace;
@@ -103,6 +107,7 @@ namespace MemoryZip.FlirtingGame {
 			var isAttacking = Input.GetKey(KeyCode.Space);
 			_playerAnimator.SetBool(IsAttack, isAttacking);
 			_playerAttackAnimation.SetActive(isAttacking);
+			_attackSound.volume = isAttacking ? 1 : 0;
 		}
 
 		private void HandlePercentDecrease() {
@@ -112,6 +117,7 @@ namespace MemoryZip.FlirtingGame {
 		[Title("유틸")]
 		[Button]
 		private void NextRound() {
+			AudioSource.PlayClipAtPoint(_clearSound, Vector3.zero);
 			CurrentRound++;
 			if (CurrentRound > _maxRound) {
 				_isGameOver = true;
@@ -125,7 +131,6 @@ namespace MemoryZip.FlirtingGame {
 		[ButtonGroup("UI")]
 		private void UpdateUI() {
 			_currentRoundText.text = $"{CurrentRound}라운드";
-			_completePercentText.text = $"{(int)CompletePercent}";
 			_completePercentBar.fillAmount = CompletePercent / 100;
 		}
 
