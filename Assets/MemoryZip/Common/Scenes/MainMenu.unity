@@ -162,7 +162,7 @@ MonoBehaviour:
   CrazyArcadeRule: {fileID: 0}
   MapleStoryRule: {fileID: 0}
   Ending: 0
-  SoundPlayer: {fileID: 0}
+  SoundPlayer: {fileID: 66563128}
   MainSound: {fileID: 8300000, guid: aa464e094ffac4f41b34d7e61785ff47, type: 3}
   EndingSound: {fileID: 8300000, guid: ef89664355b60e444b430c5e0ad96d1b, type: 3}
   MapleSound: {fileID: 8300000, guid: 795d4d2e870e77c4b932b52d90f272b7, type: 3}
@@ -201,7 +201,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -464,10 +464,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
