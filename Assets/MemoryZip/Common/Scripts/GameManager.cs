@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
                 break;
             case (3):
                 SceneManager.LoadScene("Maplestory");
+                MapleStoryRule.SetActive(true);
                 SoundPlayer.clip = MapleSound;
                 SoundPlayer.Play();
                 break;
