@@ -32,7 +32,9 @@ public class GameManager : MonoBehaviour
     public GameObject pause;
     public GameObject SuccessImage;
     public GameObject FailureImage;
-
+    public GameObject MinecraftRule;
+    public GameObject CrazyArcadeRule;
+    public GameObject MapleStoryRule;
     [Header("Stage")]
     public bool Ending;
     int currentStage;
@@ -128,6 +130,7 @@ public class GameManager : MonoBehaviour
         {
             case (1):
                 SceneManager.LoadScene("Minecraft");
+                MinecraftRule.SetActive(true);
                 SoundPlayer.clip = MinecraftSound;
                 SoundPlayer.Play();
                 break;
@@ -168,6 +171,11 @@ public class GameManager : MonoBehaviour
         {
             keyGuide.SetActive(true);
         }
+    }
+
+    public void RuleButton(GameObject RuleObject)
+    {
+        RuleObject.SetActive(false);
     }
 
     public void SetPause() //ESC´­·¶À»¶§
