@@ -91,7 +91,7 @@ namespace MemoryZip.FlirtingGame {
 
 				// 피격 애니메이션 표기
 				_maleCatDictionary[CurrentRound].GetComponent<SpriteRenderer>().sprite = _damagedMaleCatSprites[Random.Range(0, _damagedMaleCatSprites.Length)];
-				
+
 				// 다음 스테이지 체크
 				if (CompletePercent >= 100) {
 					NextRound();
@@ -119,11 +119,14 @@ namespace MemoryZip.FlirtingGame {
 		private void NextRound() {
 			AudioSource.PlayClipAtPoint(_clearSound, Vector3.zero);
 			CurrentRound++;
+			
+			// 최대 라운드에 도달했다면 다음 스테이지로
 			if (CurrentRound > _maxRound) {
 				_isGameOver = true;
-				Debug.Log("Game Clear!");
+				StartCoroutine(GameManager.Instance.Success());
 				return;
 			}
+			
 			CompletePercent = _defaultPercent;
 			UpdateCats();
 		}
@@ -144,18 +147,16 @@ namespace MemoryZip.FlirtingGame {
 		private void CheckGameOver() {
 			if (CompletePercent <= 0) {
 				_isGameOver = true;
-				StartCoroutine(GameOver());
+				GameOver();
 			}
 		}
 
-		private IEnumerator GameOver() {
+		private void GameOver() {
 			_playerAnimator.SetBool(IsDead, true);
 			_gameOverObject.SetActive(true);
 			_maleCats.ForEach(x => x.SetActive(false));
 			_rivalCats.ForEach(x => x.SetActive(false));
-
-			yield return new WaitForSeconds(_gameOverDelay);
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			StartCoroutine(GameManager.Instance.Failure());
 		}
 	}
 }
