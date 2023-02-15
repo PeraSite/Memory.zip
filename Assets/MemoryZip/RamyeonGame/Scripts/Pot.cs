@@ -10,6 +10,7 @@ namespace MemoryZip.RamyeonGame {
 		[Header("오브젝트")]
 		[SerializeField] private Inventory _inventory;
 		[SerializeField] private SpriteRenderer _animationSprite;
+		[SerializeField] private Animator _playerAnimator;
 
 		[Header("아이템")]
 		[SerializeField] private List<GameObject> _items;
@@ -21,6 +22,7 @@ namespace MemoryZip.RamyeonGame {
 		[SerializeField] private int _endingIndex = 5;
 
 		private int _showItemIndex;
+		private static readonly int Put = Animator.StringToHash("put");
 
 		private void Awake() {
 			UpdateItemActiveState();
@@ -45,8 +47,10 @@ namespace MemoryZip.RamyeonGame {
 			if (!sprite.SafeIsUnityNull()) {
 				_animationSprite.gameObject.SetActive(true);
 				_animationSprite.sprite = sprite;
+				_playerAnimator.SetBool(Put, true);
 				yield return new WaitForSeconds(_showTime);
 				_animationSprite.gameObject.SetActive(false);
+				_playerAnimator.SetBool(Put, false);
 			}
 			
 			// 라면 그릇 안의 재료 표시

@@ -12,6 +12,7 @@ namespace MemoryZip.RamyeonGame {
 		private SpriteRenderer _spriteRenderer;
 		private Vector2 _input;
 		private static readonly int IsMoving = Animator.StringToHash("isMoving");
+		private static readonly int Put = Animator.StringToHash("put");
 
 		private void Awake() {
 			_animator = GetComponent<Animator>();
@@ -41,6 +42,9 @@ namespace MemoryZip.RamyeonGame {
 		}
 
 		private void Move() {
+			// 넣는 중이면 움직이지 못함
+			if (_animator.GetBool(Put)) return;
+			
 			_rigidbody.velocity = _input.normalized * _moveSpeed;
 			_animator.SetBool(IsMoving, _input.magnitude > 0);
 		}

@@ -827,7 +827,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1793354121
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 3d0af7a69b6b7334db363ec1b2428b6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -887,7 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95d80c4a3f285a4087c18a3a4ab4bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 4
+  _moveSpeed: 5
   _interactDistance: 1
 --- !u!50 &457333333
 Rigidbody2D:
@@ -2668,6 +2668,7 @@ MonoBehaviour:
       Data: 
   _inventory: {fileID: 114402653}
   _animationSprite: {fileID: 1887255910}
+  _playerAnimator: {fileID: 457333331}
   _items:
   - {fileID: 1666200552}
   - {fileID: 1221037825}
