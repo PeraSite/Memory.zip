@@ -20,7 +20,6 @@ namespace MemoryZip.FlirtingGame {
 
 		[Header("UI")]
 		[SerializeField] private TextMeshProUGUI _currentRoundText;
-		[SerializeField] private TextMeshProUGUI _completePercentText;
 		[SerializeField] private Image _completePercentBar;
 		[SerializeField] private GameObject _gameOverObject;
 
@@ -125,7 +124,6 @@ namespace MemoryZip.FlirtingGame {
 		[ButtonGroup("UI")]
 		private void UpdateUI() {
 			_currentRoundText.text = $"{CurrentRound}라운드";
-			_completePercentText.text = $"{(int)CompletePercent}";
 			_completePercentBar.fillAmount = CompletePercent / 100;
 		}
 
