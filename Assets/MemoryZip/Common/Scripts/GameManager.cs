@@ -224,9 +224,11 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator Success() //스테이지 클리어 성공
     {
+        Time.timeScale = 0f;
         SuccessImage.SetActive(true);
         yield return new WaitForSeconds(1f);
-        SuccessImage.SetActive(false); 
+        SuccessImage.SetActive(false);
+        Time.timeScale = 1f;
         if (currentStage < 5)
         {
             GoToNextStage(StageNum[currentStage]);
@@ -241,9 +243,11 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator Failure() //스테이지 클리어 실패
     {
+        Time.timeScale = 0f;
         FailureImage.SetActive(true);
         yield return new WaitForSeconds(1f);
         FailureImage.SetActive(false);
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
