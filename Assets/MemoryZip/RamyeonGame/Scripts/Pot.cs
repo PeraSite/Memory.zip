@@ -17,10 +17,17 @@ namespace MemoryZip.RamyeonGame {
 		[OdinSerialize] private Dictionary<ItemType, Sprite> _putAnimation = new();
 		[OdinSerialize] private Dictionary<ItemType, GameObject> _putIngredients;
 
+		[SerializeField] private GameObject _boilingWater;
+		[SerializeField] private GameObject _boilingSoup;
+
+
 		[Header("설정")]
 		[SerializeField] private float _showTime = 1f;
 		[SerializeField] private int _endingIndex = 5;
+		[SerializeField] private float _boilingTime = 5f;
 
+		private bool _hasSoup;
+		private bool _boiling;
 		private int _showItemIndex;
 		private static readonly int Put = Animator.StringToHash("put");
 
@@ -42,7 +49,7 @@ namespace MemoryZip.RamyeonGame {
 
 		private IEnumerator PutItem(ItemType type) {
 			var sprite = _putAnimation.GetValueOrDefault(type, null);
-			
+
 			// 애니메이션 표시
 			if (!sprite.SafeIsUnityNull()) {
 				_animationSprite.gameObject.SetActive(true);
@@ -52,11 +59,20 @@ namespace MemoryZip.RamyeonGame {
 				_animationSprite.gameObject.SetActive(false);
 				_playerAnimator.SetBool(Put, false);
 			}
-			
+
 			// 라면 그릇 안의 재료 표시
 			_putIngredients[type].SetActive(true);
+
+			// 물을 넣으면 끓는 물 표시
 			if (type == ItemType.스프) {
+				_hasSoup = true;
 				_putIngredients[ItemType.물].SetActive(false);
+				_boilingWater.SetActive(false);
+				if (_boiling) _boilingSoup.SetActive(true);
+			}
+
+			if (type == ItemType.물) {
+				StartCoroutine(MakeBoil());
 			}
 
 			// 게임 내 주울 수 있는 아이템 업데이트
@@ -70,6 +86,12 @@ namespace MemoryZip.RamyeonGame {
 			if (_showItemIndex >= _endingIndex) {
 				StartCoroutine(GameManager.Instance.Success());
 			}
+		}
+
+		private IEnumerator MakeBoil() {
+			yield return new WaitForSeconds(_boilingTime);
+			(_hasSoup ? _boilingSoup : _boilingWater).SetActive(true);
+			_boiling = true;
 		}
 
 		private void UpdateItemActiveState() {

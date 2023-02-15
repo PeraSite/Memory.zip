@@ -28,10 +28,6 @@ namespace MemoryZip.RamyeonGame {
 			_input.x = Input.GetAxisRaw("Horizontal");
 			_input.y = Input.GetAxisRaw("Vertical");
 
-			if (_input.x != 0) {
-				_spriteRenderer.flipX = _input.x > 0;
-			}
-
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				Interact();
 			}
@@ -43,10 +39,17 @@ namespace MemoryZip.RamyeonGame {
 
 		private void Move() {
 			// 넣는 중이면 움직이지 못함
-			if (_animator.GetBool(Put)) return;
+			if (_animator.GetBool(Put)) {
+				_rigidbody.velocity = Vector2.zero;
+				return;
+			}
 			
 			_rigidbody.velocity = _input.normalized * _moveSpeed;
 			_animator.SetBool(IsMoving, _input.magnitude > 0);
+
+			if (_input.x != 0) {
+				_spriteRenderer.flipX = _input.x > 0;
+			}
 		}
 
 		private void Interact() {
