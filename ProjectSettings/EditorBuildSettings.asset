@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/MemoryZip/Common/Scenes/MainMenu.unity
+    guid: 6fb4bc52118f3344db3d9e8ebfabdd6a
   - enabled: 1
     path: Assets/MemoryZip/CrazyArcade/CrazyArcade.unity
     guid: 7537bdd5fd5d2cd46b89866385c23e15
@@ -26,7 +26,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MemoryZip/Common/Scenes/Ending.unity
     guid: b79a668a4528d3e4bb388d57269c8130
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   m_configObjects: {}
