@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour
                 break;
             case (2):
                 SceneManager.LoadScene("CrazyArcade");
+                CrazyArcadeRule.SetActive(true);
                 SoundPlayer.clip = CrazyArcadeSound;
                 SoundPlayer.Play();
                 break;
