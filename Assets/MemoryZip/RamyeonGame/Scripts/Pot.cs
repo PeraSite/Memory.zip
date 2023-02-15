@@ -11,6 +11,7 @@ namespace MemoryZip.RamyeonGame {
 		[SerializeField] private Inventory _inventory;
 		[SerializeField] private SpriteRenderer _animationSprite;
 		[SerializeField] private Animator _playerAnimator;
+		[SerializeField] private Timer _timer;
 
 		[Header("아이템")]
 		[SerializeField] private List<GameObject> _items;
@@ -79,10 +80,11 @@ namespace MemoryZip.RamyeonGame {
 			_showItemIndex++;
 			UpdateItemActiveState();
 
-			// 인벤토리 초기화
+			// 아이템, 타이머 초기화
 			_inventory.Holding = ItemType.없음;
+			_timer.ResetTimer();
 
-			// 게임 종료
+			// 게임 종료 체크
 			if (_showItemIndex >= _endingIndex) {
 				StartCoroutine(GameManager.Instance.Success());
 			}
