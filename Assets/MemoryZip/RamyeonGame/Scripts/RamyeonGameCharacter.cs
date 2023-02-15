@@ -1,4 +1,3 @@
-using System;
 using Sirenix.Utilities;
 using UnityEngine;
 
@@ -7,7 +6,6 @@ namespace MemoryZip.RamyeonGame {
 		[Header("¼³Á¤")]
 		[SerializeField] private float _moveSpeed;
 		[SerializeField] private float _interactDistance;
-
 
 		private Animator _animator;
 		private Rigidbody2D _rigidbody;
@@ -48,7 +46,7 @@ namespace MemoryZip.RamyeonGame {
 		}
 
 		private void Interact() {
-			Collider2D col = Physics2D.OverlapCircle(transform.position, _interactDistance, LayerMask.GetMask("Item"));
+			Collider2D col = Physics2D.OverlapCircle(transform.position, _interactDistance, LayerMask.GetMask("Interactable"));
 			if (col.SafeIsUnityNull()) return;
 
 			IInteractable interactable = col.GetComponent<IInteractable>();
